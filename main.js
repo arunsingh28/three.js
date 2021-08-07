@@ -19,7 +19,7 @@ renderer.render(scene, camera);
 
 
 const geometry = new THREE.TorusGeometry(13, 3, 20, 100);
-const material = new THREE.MeshBasicMaterial({
+const material = new THREE.MeshStandardMaterial({
     color: 0xFF6347,
     wireframe: true
 });
@@ -27,8 +27,20 @@ const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
 
+
+const pointLight = new THREE.PointLight(0xfffffff);
+pointLight.position.set(20, 20, 40);
+
+
+
+
+scene.add(pointLight);
+
 function animate() {
     requestAnimationFrame(animate);
+    torus.rotation.x += .01;
+    torus.rotation.y += .005;
+    torus.rotation.z += .01;
     renderer.render(scene, camera)
 }
 
